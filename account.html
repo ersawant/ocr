@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class="container-fluid" style="margin-top: 50px; margin-left: 50px;">
+            <div class="col-md-11" style="margin-top: 30px">
+                <div class="content-section">
+                  <div class="media">
+                    <div class="media-body">
+                      <h2 class="account-heading">{{ current_user.username }}</h2>
+                      <p class="text-secondary">{{ current_user.email }}</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+    </div>
+
+    <div class="row">
+		<div class="col-md-8 offset-md-2" style="margin-top: 2px">
+
+		<table class="table table-hover" id = "use_case_table">
+		    <thead>
+		      <tr>
+		        <th>S.No.</th>
+		        <th>Filename</th>
+                <th>Time of Submission</th>
+			    <th>Score</th>
+		      </tr>
+		    </thead>
+
+            {% for item in all_subs %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ item.file }}</td>
+                    <td>{{ item.post_time.strftime('%d-%m-%Y, %H:%M:%S') }}</td>
+                    <td>{{ item.rouge }}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+        </div>
+    </div>
+
+{% endblock content %}

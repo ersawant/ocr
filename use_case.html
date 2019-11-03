@@ -1,0 +1,68 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+
+<form method="post" action="/upload_file" enctype="multipart/form-data">
+    <dl>
+		<p>
+			<input type="file" name="file" autocomplete="off" required>
+		</p>
+    </dl>
+    <p>
+		<input type="submit" value="Submit">
+	</p>
+</form>
+
+
+<form method="post" action="/export_file" enctype="multipart/form-data">
+   
+		<input type="submit" value="Normal Export">
+	
+</form>
+<style>
+
+
+ 
+
+
+</style>
+
+ 
+
+               <div class="container-fluid">
+
+                              <div class="row" style="margin-top: 20px;">
+
+                                             <div class="col-md-3"></div>
+
+                                             <div class="col-md-9">
+
+                                             <h1> Invoice Line Item Template Dashboard </h1>
+
+                              </div>
+
+               </div>
+
+<br>
+
+
+
+<br>
+
+
+{% for table in tables %}
+
+            
+
+            {{ table|safe }}
+
+{% endfor %}
+
+ 
+
+ 
+
+{% endblock content %}

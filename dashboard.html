@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container-fluid">
+		<div class="row" style="margin-top: 40px;">
+			<div class="col-md-4"></div>
+                <div class="text-center col-md-4">
+                    <h1> Leaderboard </h1>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" onclick="location.href='upload'">Submit New</button>
+                </div>
+    		</div>
+    	</div>
+
+
+        <div class="row">
+		<div class="col-md-8 offset-md-2" style="margin-top: 2px">
+
+		<table class="table table-hover" id = "leaderboard_table">
+		    <thead>
+		      <tr>
+		        <th>Rank</th>
+		        <th>Username</th>
+		        <th>Filename</th>
+                <th>Time of Submission</th>
+                <th>Score</th>
+		      </tr>
+		    </thead>
+
+
+            {% for item in subs %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>
+                        {% if item.user_id==current_user.id %}
+                        <a href="{{ url_for('account') }}">{{ item.author.username }}</a>
+                        {% else %}
+                        {{ item.author.username }}
+                        {% endif %}
+                    </td>
+                    <td>{{ item.filename }}</td>
+                    <td>{{ item.date_posted.strftime('%d-%m-%Y, %H:%M:%S') }}</td>
+                    <td>{{ item.score }}</td>
+                </tr>
+            {% endfor %}
+
+	    </table>
+		</div>
+	</div>
+    </div>
+
+
+
+
+{% endblock content %}
